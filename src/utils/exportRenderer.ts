@@ -35,7 +35,7 @@ import { evaluatePostEffectBlock, getActivePostEffects } from './postEffectsPipe
 import type { PostEffectTrack } from '../types/postEffect';
 import { FULLSCREEN_VERTEX_SHADER } from './webgl/commonShaders';
 import { buildCanvasFont, formatFontStack, DEFAULT_EXPORT_FONT_STACK } from './fontStack';
-import { getFontById } from '../constants/fonts';
+import { getFontById, DEFAULT_FONT_ID } from '../constants/fonts';
 import { getBundledFontFiles } from './fontLoader';
 import { buildSessionDocument } from './sessionDocument';
 import { setWebMSegmentDuration } from './webmDuration';
@@ -3919,7 +3919,7 @@ ${this.generateWebGLShaderRuntime(htmlShaderBundle!)}
       default:
         return formatFontStack(
           data.fontMetrics?.fontFamily ||
-            getFontById(data.typography?.selectedFontId ?? 'auto').cssStack ||
+            getFontById(data.typography?.selectedFontId ?? DEFAULT_FONT_ID).cssStack ||
             DEFAULT_EXPORT_FONT_STACK
         );
     }

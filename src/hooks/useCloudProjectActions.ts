@@ -17,7 +17,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCloudProject, supabase } from '@ascii-motion/premium';
 import { generatePreview, uploadPreviewImage } from '@ascii-motion/premium';
-import { getFontStack } from '../constants/fonts';
+import { getFontStack, DEFAULT_FONT_ID } from '../constants/fonts';
 import { formatFontStack } from '../utils/fontStack';
 import type { CloudProject, SessionData } from '@ascii-motion/premium';
 import type { ExportDataBundle } from '../types/export';
@@ -233,7 +233,7 @@ export function useCloudProjectActions() {
                 fontSize: sessionData.typography?.fontSize || 16,
                 fontFamily: formatFontStack(
                   exportData.fontMetrics?.fontFamily ||
-                    getFontStack(sessionData.typography?.selectedFontId ?? 'auto')
+                    getFontStack(sessionData.typography?.selectedFontId ?? DEFAULT_FONT_ID)
                 ),
                 postEffectTracks: (sessionData as any).postEffectTracks,
                 timelineFrameIndex: frameIndex,

@@ -17,6 +17,7 @@ import { detectSessionVersion, migrateV1ToV2, validateAndRepairV2 } from './sess
 import { getContentFrameAtTime } from './layerCompositing';
 import { getCanvasTypographyController } from '../stores/canvasTypographySnapshot';
 import { validateSessionDataV2ForImport } from './sessionValidation';
+import { DEFAULT_FONT_ID } from '../constants/fonts';
 
 type SessionFrameCells = Record<string, Cell>;
 
@@ -399,7 +400,7 @@ export class SessionImporter {
       }
       // Restore font selection - defaults to 'auto' for backwards compatibility
       if (typographyCallbacks.setSelectedFontId) {
-        const fontId = sessionData.typography.selectedFontId ?? 'auto';
+        const fontId = sessionData.typography.selectedFontId ?? DEFAULT_FONT_ID;
         typographyCallbacks.setSelectedFontId(fontId);
       }
     }
@@ -734,7 +735,7 @@ export class SessionImporter {
         typographyCallbacks.setLineSpacing(typography.lineSpacing);
       }
       if (typographyCallbacks.setSelectedFontId) {
-        const fontId = (typography.selectedFontId as string) ?? 'auto';
+        const fontId = (typography.selectedFontId as string) ?? DEFAULT_FONT_ID;
         typographyCallbacks.setSelectedFontId(fontId);
       }
     }
