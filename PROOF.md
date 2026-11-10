@@ -1,19 +1,19 @@
 # Proof report
 
-Cleanup from commit `0a54d3edce` to commit `ae34899c60`. Written by proofkit 0.1.0 (commit fea54aed23) on 2026-11-10.
+Cleanup from commit `0a54d3edce` to commit `cf7c142699`. Written by proofkit 0.1.0 (commit 2857865cd8) on 2026-11-10.
 
 | Proof | Result | In short |
 |---|---|---|
-| Code | passed | 2,348 items proven, 0 to review |
+| Code | **needs review** | 2,348 items proven, 1 to review |
 | Tests | passed | 817 passed after, 817 before |
 | Screens | passed | 16 of 16 steps the same |
 | Outputs | passed | 594 of 594 recorded results identical |
 
-**All four proofs passed.**
+**Something needs review: see the sections below.**
 
 What this shows: the cleanup moved, merged and deleted code without changing what the code does, as far as each check below reaches. The commands that produced each result are at the end.
 
-## Code proof: `0a54d3edce` to `ae34899c60`
+## Code proof: `0a54d3edce` to `cf7c142699`
 
 Checked folders: src. 510 files and 176,404 lines before, 510 files and 173,468 lines after (-2,936).
 
@@ -34,12 +34,18 @@ Each function, method, constant and class is matched before and after. "Identica
 | **Needs review: removed, but reachable from outside** | **0** | exports of a published package, or files a framework loads by path |
 | **Needs review: copies with their own state merged** | **0** | |
 | **Needs review: load-time code** | **0** | top-level statements removed, added, moved or reordered |
-| **Needs review: files this proof does not read** | **0** | changed files that are not source code in the checked folders |
+| **Needs review: files this proof does not read** | **1** | changed files that are not source code in the checked folders |
 | **Needs review: tool comments** | **0** | comments that the compiler, bundler or test runner acts on |
 | Test code changed (information) | 0 | changes inside test files |
 | Documentation changed (information) | 1 | docs/CANVAS_TEXT_RENDERING.md |
 
-**All 2,348 items proven by the code check. Nothing needs review.**
+**2,348 items proven by the code check; 1 need review or a test/screen proof (listed below).**
+
+### Files this proof does not read
+
+| File | Change | Why |
+|---|---|---|
+| vitest.config.ts | M | outside the checked folders |
 
 ### Merged duplicates
 
@@ -86,14 +92,14 @@ Each function, method, constant and class is matched before and after. "Identica
 
 | Commit | Exit code | Result | Time |
 |---|---|---|---|
-| before `0a54d3edce` | 0 | 817 passed, 14 skipped | 5.1s |
-| after `ae34899c60` | 0 | 817 passed, 14 skipped | 4.6s |
+| before `0a54d3edce` | 0 | 817 passed, 14 skipped | 4.6s |
+| after `cf7c142699` | 0 | 817 passed, 14 skipped | 4.5s |
 
 **All green on both commits.**
 
 No test file differs between the two commits, so both sides ran the same tests.
 
-## Screen proof: `0a54d3edce` to `ae34899c60`
+## Screen proof: `0a54d3edce` to `cf7c142699`
 
 | Step | Result | Text, title, address | Browser errors | Requests sent | Saved data | Pixels | Verdict |
 |---|---|---|---|---|---|---|---|
@@ -117,6 +123,8 @@ No test file differs between the two commits, so both sides ran the same tests.
 **16 of 16 steps the same, 0 to review, 0 not deterministic.**
 
 Browser errors: 30 before, 30 after, compared step by step. The errors after: `log: Failed to load resource: the server responded with a status of 404 (Not Found) /_vercel/insights/script.js`, `log: Failed to load resource: the server responded with a status of 404 (Not Found) /_vercel/speed-insights/script.js`. Requests during page load: same.
+
+Built stylesheets: 1, the same bytes in both builds.
 
 "Requests sent" is every network request the page started during the step: method, address and a fingerprint of the body. A script or stylesheet that the bundler renamed because its content changed counts as the same file. "Saved data" is what the page left in the browser: local storage, session storage, the cookies a page can read, and IndexedDB (per store, the number of records and a fingerprint of their content), compared value by value. The Cache API and cookies only the server can read are not looked at. Screenshots show the visible window unless the steps file sets `fullPage`.
 
