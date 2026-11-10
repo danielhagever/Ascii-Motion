@@ -142,7 +142,7 @@ The same probe ran on both commits (`~/proofkit/tools/jail.sh ~/proofkit-demo/As
 
 ## How each check was run
 
-The exact commands, as a record. On request they are run again live, on a call.
+The exact commands, as a record.
 
 ```bash
 proofkit prove-code ~/proofkit-demo/Ascii-Motion --base 0a54d3e --head proofkit-cleanup --include src --out ~/proofkit-demo/proof
