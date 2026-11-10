@@ -1,0 +1,103 @@
+{
+ "w": 1440,
+ "h": 900,
+ "offline": true,
+ "loadWait": 4000,
+ "onNewDocument": "// Test helper injected before the app's own scripts: find things by visible text or label and click them the\n// way a pointer would (Radix menus open on pointerdown, not on click).\nwindow.__pk = {\n  find(label, sel = 'button,[role=menuitem],[role=tab],a,label') {\n    const norm = (s) => (s || '').replace(/\\s+/g, ' ').trim();\n    const els = [...document.querySelectorAll(sel)].filter((e) => e.offsetParent !== null || e.getClientRects().length);\n    return els.find((e) => norm(e.getAttribute('aria-label')) === label || norm(e.innerText) === label)\n      || els.find((e) => norm(e.getAttribute('aria-label')).startsWith(label) || norm(e.title).startsWith(label) || norm(e.innerText).startsWith(label));\n  },\n  press(el, button = 0) {\n    const r = el.getBoundingClientRect(), o = { bubbles: true, cancelable: true, clientX: r.x + r.width / 2, clientY: r.y + r.height / 2, button, pointerId: 1, pointerType: 'mouse', isPrimary: true };\n    el.dispatchEvent(new PointerEvent('pointerdown', o)); el.dispatchEvent(new MouseEvent('mousedown', o));\n    el.dispatchEvent(new PointerEvent('pointerup', o)); el.dispatchEvent(new MouseEvent('mouseup', o));\n    if (button === 2) el.dispatchEvent(new MouseEvent('contextmenu', o)); else el.dispatchEvent(new MouseEvent('click', o));\n  },\n  // A missing control is an error, so a broken step can never pass as \"same on both sides\".\n  click(label, sel) { const el = this.find(label, sel); if (!el) throw new Error('not on the page: ' + label); this.press(el); return 'clicked ' + label; },\n  type(el, value) { // set an input the way React notices\n    const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n    set.call(el, value); el.dispatchEvent(new Event('input', { bubbles: true })); return el.value;\n  },\n  menu() { return [...document.querySelectorAll('[role=menuitem],[role=menuitemradio],[role=option]')].map((e) => e.innerText.replace(/\\s+/g, ' ').trim()).join(' | '); },\n};\nconst __sleep = (ms) => new Promise((r) => setTimeout(r, ms));\n// Close the welcome dialog, open one export dialog and type a messy file name into it.\nwindow.__pk.exportDialog = async function (item) {\n  this.click('Start Creating'); await __sleep(600);\n  this.click('Export'); await __sleep(600);\n  const hit = this.click(item, '[role=menuitem]'); await __sleep(1200);\n  const input = [...document.querySelectorAll('[role=dialog] input')].find((i) => i.type === 'text' || !i.getAttribute('type'));\n  if (!input) throw new Error(hit + ', but the dialog has no file name field');\n  return 'file name becomes: ' + this.type(input, 'My Demo File!! __v2--');\n};\nwindow.__pk.rightClick = async function (text) {\n  this.click('Start Creating'); await __sleep(600);\n  const el = [...document.querySelectorAll('span,div')].find((e) => e.children.length === 0 && (e.innerText || '').trim() === text);\n  if (!el) throw new Error('not on the page: ' + text);\n  this.press(el, 2); await __sleep(700);\n  return this.menu() || [...document.querySelectorAll('button')].slice(-14).map((b) => b.innerText.trim()).filter(Boolean).join(' | ');\n};\nwindow.__pk.tool = async function (label) {\n  this.click('Start Creating'); await __sleep(500);\n  return this.click(label);\n};\n",
+ "steps": [
+  {
+   "name": "welcome",
+   "js": "document.title",
+   "wait": 500
+  },
+  {
+   "name": "editor",
+   "js": "__pk.click('Start Creating')",
+   "wait": 900
+  },
+  {
+   "name": "export-react",
+   "reload": true,
+   "js": "__pk.exportDialog(\"React Component\")",
+   "wait": 600
+  },
+  {
+   "name": "export-ink",
+   "reload": true,
+   "js": "__pk.exportDialog(\"Ink Component\")",
+   "wait": 600
+  },
+  {
+   "name": "export-opentui",
+   "reload": true,
+   "js": "__pk.exportDialog(\"OpenTUI Component\")",
+   "wait": 600
+  },
+  {
+   "name": "export-ansi",
+   "reload": true,
+   "js": "__pk.exportDialog(\"ANSI Text\")",
+   "wait": 600
+  },
+  {
+   "name": "export-bubbletea",
+   "reload": true,
+   "js": "__pk.exportDialog(\"Bubbletea Component\")",
+   "wait": 600
+  },
+  {
+   "name": "export-image",
+   "reload": true,
+   "js": "__pk.exportDialog(\"Image\")",
+   "wait": 600
+  },
+  {
+   "name": "export-json",
+   "reload": true,
+   "js": "__pk.exportDialog(\"JSON\")",
+   "wait": 600
+  },
+  {
+   "name": "layer-menu",
+   "reload": true,
+   "js": "__pk.rightClick('Layer 1')",
+   "wait": 500
+  },
+  {
+   "name": "frame-menu",
+   "reload": true,
+   "js": "__pk.rightClick('Frame 1')",
+   "wait": 500
+  },
+  {
+   "name": "tool-gradient",
+   "reload": true,
+   "js": "__pk.tool(\"Gradient tool\")",
+   "wait": 600
+  },
+  {
+   "name": "tool-text",
+   "reload": true,
+   "js": "__pk.tool(\"Text tool\")",
+   "wait": 600
+  },
+  {
+   "name": "tool-rectangle",
+   "reload": true,
+   "js": "__pk.tool(\"Rectangle tool\")",
+   "wait": 600
+  },
+  {
+   "name": "tool-ascii-type",
+   "reload": true,
+   "js": "__pk.tool(\"ASCII Type tool\")",
+   "wait": 600
+  },
+  {
+   "name": "tool-eyedropper",
+   "reload": true,
+   "js": "__pk.tool(\"Eyedropper tool\")",
+   "wait": 600
+  }
+ ]
+}
