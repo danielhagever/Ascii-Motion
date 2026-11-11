@@ -22,6 +22,8 @@ Examples: `hexToRgb` written three times, `sanitizeFileName` in four export dial
 
 The two scan reports are in [`scan-before.md`](scan-before.md) and [`scan-after.md`](scan-after.md).
 
+Both scan reports were made again on 12 November 2026, after the scan's counting was made stricter. The earlier versions are in this branch's history. Two things changed. Findings that exist only in test files are now counted apart from the app's own code, so the 14 groups above read as 11 in app code and 3 in test files, and the 6 as 3 and 3. Common words, round numbers and plain black or white are no longer counted as retyped constants, because most of those matches were coincidences. That stricter rule also misses some real ones, among them the four `'auto'` font ids replaced in step 4 below. Those four are in the proof report.
+
 ## What the cleanup did
 
 Five commits, 28 files, 2,937 fewer lines.

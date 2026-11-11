@@ -4,12 +4,12 @@ Repository at commit `0a54d3edce`: 510 source files, 176,404 lines, 2,347 functi
 
 | Check | Result |
 |---|---|
-| Duplicated functions (identical code and meaning, 40+ tokens) | 14 groups, about 277 removable lines (0.2% of the code) |
-| Look-alikes: same text, but each copy uses different helpers or values (not safe to merge as they are) | 1 groups |
+| Duplicated functions (identical code and meaning, 40+ tokens) | 11 groups, about 247 removable lines (0.1% of the code); 3 more groups only in test files |
+| Look-alikes: same text, but each copy uses different helpers or values (not safe to merge as they are) | 0 groups; 1 more group only in test files |
 | Files over 1,000 lines (too big for an AI agent to read whole) | 18 |
 | Files between 500 and 1,000 lines | 51 |
-| Same function name, different code, in several files | 36 names |
-| Constants retyped as raw values elsewhere | 24 constants, 635 places |
+| Same function name, different code, in several files | 22 names; 14 more names only in test files |
+| Constants retyped as raw values elsewhere | 11 constants, 35 places |
 
 ## Duplicated functions
 
@@ -22,19 +22,12 @@ Repository at commit `0a54d3edce`: 510 source files, 176,404 lines, 2,347 functi
 | 2 | 26 | `MenuItem` src/components/features/timeline/LayerContextMenu.tsx:52<br>`MenuItem` src/components/features/timeline/TimelineContextMenu.tsx:82 |
 | 2 | 20 | `interpolateBetweenKeyframes` src/types/easing.ts:210<br>`interpolateNumeric` src/utils/effectKeyframeInterpolation.ts:15 |
 | 3 | 8 | `hexToRgb` src/utils/colorConversion.ts:8<br>`hexToRgb` src/utils/effectsProcessing.ts:535<br>`hexToRgb` src/utils/gradientEngine.ts:324 |
-| 3 | 7 | `replay` src/__tests__/animatedText.test.tsx:55<br>`replay` src/__tests__/generatorHistory.test.tsx:35<br>`replay` src/__tests__/particleGenerator.test.tsx:40 |
 | 2 | 11 | `deriveCanvasBounds` src/registry/effects/waveWarp.ts:123<br>`deriveCanvasBounds` src/registry/effects/wiggle.ts:180 |
-| 2 | 10 | `resetStores` src/__tests__/phase5ExportMigration.test.ts:24<br>`resetStores` src/__tests__/phase6Integration.test.ts:23 |
 | 2 | 9 | `contentFrameToLegacyFrame` src/stores/animationStore.ts:38<br>`contentFrameToLegacyFrame` src/stores/animationStoreAdapter.ts:37 |
 | 2 | 8 | `getActiveLayer` src/stores/animationStore.ts:28<br>`getActiveLayer` src/stores/animationStoreAdapter.ts:27 |
 | 2 | 8 | `loadImage` src/utils/imageTraceProcessor.ts:162<br>`MediaProcessor.loadImage` src/utils/mediaProcessor.ts:210 |
-| 2 | 6 | `snapshot` src/__tests__/generatorExports.test.ts:32<br>`snapshot` src/__tests__/generators.test.ts:49 |
 
-## Look-alikes (not duplicates)
-
-| Copies | Where |
-|---|---|
-| 2 | `ok` src/__tests__/mcpCoverage.test.ts:36<br>`ok` src/__tests__/mcpReviewFixes.test.ts:21 |
+Only in test files, listed for information: `replay` (3 copies), `resetStores` (2 copies), `snapshot` (2 copies).
 
 ## Files too big to read whole
 
@@ -64,39 +57,35 @@ Repository at commit `0a54d3edce`: 510 source files, 176,404 lines, 2,347 functi
 | Name | Where |
 |---|---|
 | `hexToRgb` | src/hooks/usePostEffectsRenderer.ts:29<br>src/utils/colorConversion.ts:8<br>src/utils/effectsProcessing.ts:535<br>src/utils/gradientEngine.ts:324<br>src/utils/gridColor.ts:8<br>src/utils/mediaImportPipeline.ts:237<br>src/utils/webgl/WebGLPostProcessor.ts:532 |
-| `makeCell` | src/__tests__/ansiExport.test.ts:10<br>src/__tests__/effectsPipeline.test.ts:27<br>src/__tests__/fontExport.test.ts:55<br>src/__tests__/layerCompositing.test.ts:34<br>src/__tests__/phase5ExportMigration.test.ts:35<br>src/__tests__/phase6Integration.test.ts:34 |
-| `run` | src/__tests__/mcpCoverage.test.ts:32<br>src/__tests__/mcpImportExportSettings.test.ts:20<br>src/__tests__/mcpOperations.test.ts:22<br>src/__tests__/mcpReviewFixes.test.ts:17<br>src/mcp/operations/handlers/generators.ts:12 |
-| `ok` | src/__tests__/mcpCoverage.test.ts:36<br>src/__tests__/mcpGeneratorCommands.test.ts:70<br>src/__tests__/mcpImportExportSettings.test.ts:22<br>src/__tests__/mcpOperations.test.ts:27<br>src/__tests__/mcpReviewFixes.test.ts:21 |
 | `finalizeFileName` | src/components/features/AnsiExportDialog.tsx:29<br>src/components/features/BubbleteaExportDialog.tsx:34<br>src/components/features/InkExportDialog.tsx:27<br>src/components/features/OpenTuiExportDialog.tsx:27<br>src/components/features/ReactExportDialog.tsx:26 |
-| `replay` | src/__tests__/animatedText.test.tsx:55<br>src/__tests__/generatorHistory.test.tsx:35<br>src/__tests__/paletteEditorDialog.test.tsx:23<br>src/__tests__/particleGenerator.test.tsx:40 |
-| `cell` | src/__tests__/canvasStoreLayerSync.test.ts:25<br>src/__tests__/mcpClient.test.ts:59<br>src/__tests__/mcpFrameNavigation.test.ts:11<br>src/__tests__/textToolTextBox.test.ts:15 |
-| `resetStore` | src/__tests__/effectBlocks.test.ts:12<br>src/__tests__/layerLimits.test.ts:24<br>src/__tests__/timelineStore.test.ts:17<br>src/__tests__/timelineUI.test.ts:27 |
-| `resetStores` | src/__tests__/mcpClient.test.ts:67<br>src/__tests__/mcpFrameNavigation.test.ts:19<br>src/__tests__/phase5ExportMigration.test.ts:24<br>src/__tests__/phase6Integration.test.ts:23 |
 | `isRecord` | src/mcp/client.ts:73<br>src/mcp/generatorCommands.ts:66<br>src/mcp/legacyAdapters.ts:21<br>src/mcp/operations/handlers/io.ts:111 |
-| `settings` | src/__tests__/animatedText.test.tsx:39<br>src/__tests__/ansiExport.test.ts:98<br>src/__tests__/particleGenerator.test.tsx:29 |
-| `makeV1Session` | src/__tests__/mcpClient.test.ts:131<br>src/__tests__/phase5ExportMigration.test.ts:88<br>src/__tests__/sessionMigration.test.ts:20 |
-| `makeV2Session` | src/__tests__/mcpClient.test.ts:167<br>src/__tests__/phase5ExportMigration.test.ts:40<br>src/__tests__/sessionMigration.test.ts:52 |
 | `toPascalCase` | src/components/features/InkExportDialog.tsx:32<br>src/components/features/OpenTuiExportDialog.tsx:32<br>src/components/features/ReactExportDialog.tsx:31 |
 | `ToolPalette` | src/components/features/ToolPalette.tsx:97<br>src/components/features/ToolPalette_backup.tsx:68<br>src/components/features/ToolPalette_new.tsx:68 |
-| ... 21 more | | |
+| `rgbToHex` | src/utils/colorConversion.ts:20<br>src/utils/effectsProcessing.ts:547<br>src/utils/gradientEngine.ts:333 |
+| `ColorPicker` | src/components/features/ColorPicker.tsx:26<br>src/components/features/ColorPicker_new.tsx:22 |
+| `findTrackByBlockId` | src/components/features/timeline/EffectPropertiesPanel.tsx:31<br>src/hooks/useEffectBlockHistory.ts:25 |
+| `ColorSwatchRow` | src/components/features/timeline/EffectPropertiesPanel.tsx:316<br>src/components/features/timeline/PostEffectPropertiesPanel.tsx:286 |
+| `getPaletteById` | src/constants/bezierAutofill/index.ts:34<br>src/constants/defaultPalettes.ts:487 |
+| `getFontStack` | src/constants/fonts.ts:169<br>src/lib/premium-stub.ts:393 |
+| `num` | src/mcp/contract/schema.ts:49<br>src/utils/generators/generatorRuntime.ts:154 |
+| `oneOf` | src/mcp/contract/schema.ts:54<br>src/mcp/operations/handlers/io.ts:72 |
+| `currentFrame` | src/mcp/generatorCommands.ts:70<br>src/mcp/operations/handlers/common.ts:79 |
+| `getSource` | src/mcp/generatorCommands.ts:108<br>src/utils/generators/generatorHistory.ts:14 |
+| ... 7 more | | |
 
 ## Constants retyped as raw values
 
 | Constant | Value | Defined in | Retyped | Files |
 |---|---|---|---|---|
-| `DEFAULT_TEXT_COLOR` | `"#ffffff"` | src/utils/generators/intensityMapping.ts | 241x | src/__tests__/animatedText.test.tsx, src/__tests__/ansiExport.test.ts, src/__tests__/effectsPipeline.test.ts, ... |
-| `TRANSPARENT` | `"transparent"` | src/registry/generators/animatedText.ts | 158x | src/__tests__/animatedText.test.tsx, src/__tests__/ansiExport.test.ts, src/__tests__/canvasStoreLayerSync.test.ts, ... |
-| `DEFAULT_FONT_ID` | `"auto"` | src/constants/fonts.ts | 57x | src/__tests__/fontExport.test.ts, src/components/common/AsciiMotionLogo.tsx, src/components/features/CanvasSettings.tsx, ... |
-| `DEFAULT_LEGACY_FG` | `"#FFFFFF"` | src/mcp/legacyAdapters.ts | 44x | src/__tests__/animatedText.test.tsx, src/__tests__/canvasStoreLayerSync.test.ts, src/__tests__/layerCompositing.test.ts, ... |
-| `ANIMATED_TEXT_GENERATOR_TYPE` | `"animated-text"` | src/registry/generators/animatedText.ts | 26x | src/__tests__/animatedText.test.tsx, src/__tests__/generatorExports.test.ts, src/__tests__/generators.test.ts, ... |
-| `SELECTION_CELL_LIMIT` | `2000` | src/mcp/operations/handlers/document.ts | 22x | src/components/features/BubbleteaExportDialog.tsx, src/components/features/ExportCharacterPaletteDialog.tsx, src/components/features/ExportPaletteDialog.tsx, ... |
-| `DEFAULT_GENERATOR_CHARACTER_PALETTE_ID` | `"minimal-ascii"` | src/registry/generatorRegistry.ts | 17x | src/__tests__/fontExport.test.ts, src/__tests__/generatorMapping.test.ts, src/__tests__/paletteEditorDialog.test.tsx, ... |
 | `BTN_ICON` | `"w-3.5 h-3.5"` | src/components/features/timeline/TimelineToolbar.tsx | 13x | src/components/features/timeline/LayerContextMenu.tsx, src/components/features/timeline/LayerList.tsx, src/components/features/timeline/LayerListItem.tsx, ... |
-| `TEXT` | `"Text"` | src/registry/generators/animatedText.ts | 12x | src/__tests__/animatedText.test.tsx, src/components/features/ToolPalette.tsx, src/components/features/ToolPalette_backup.tsx, ... |
-| `DEFAULT_PALETTE_ID` | `"block"` | src/constants/bezierAutofill/index.ts | 10x | src/components/common/AsciiMotionLogo.tsx, src/components/features/CanvasGrid.tsx, src/components/features/ColorPickerOverlay.tsx, ... |
-| `DEFAULT_ACTIVE_PALETTE_ID` | `"ansi-16"` | src/constants/defaultPalettes.ts | 9x | src/__tests__/ansiExport.test.ts, src/__tests__/paletteEditorDialog.test.tsx, src/constants/defaultPalettes.ts, ... |
 | `CHECKERBOARD` | `"linear-gradient(45deg, #ccc 25%, transp` | src/components/features/timeline/GeneratorPropertiesPanel.tsx | 7x | src/components/features/CanvasSettings.tsx, src/components/features/ColorPicker.tsx, src/components/features/ColorPickerOverlay.tsx, ... |
-| `DEFAULT_OUTLINE_FONT_ID` | `"jetbrains-mono"` | src/utils/font/fontRegistry.ts | 5x | src/__tests__/fontExport.test.ts, src/__tests__/mcpImportExportSettings.test.ts, src/constants/fonts.ts, ... |
-| `STYLE` | `"Style"` | src/registry/generators/animatedText.ts | 3x | src/mcp/contract/operations.ts, src/utils/font/fontRegistry.ts |
-| `COMPACT_BREAKPOINT` | `1200` | src/hooks/useLayoutState.ts | 2x | src/components/features/timeline/TimelineRuler.tsx, src/components/features/timeline/TimelineTrackArea.tsx |
-| ... 9 more | | |
+| `DEFAULT_GENERATOR_CHARACTER_PALETTE_ID` | `"minimal-ascii"` | src/registry/generatorRegistry.ts | 4x | src/components/features/CharacterMappingControls.tsx, src/constants/defaultCharacterPalettes.ts, src/utils/exportDataCollector.ts |
+| `DEFAULT_OUTLINE_FONT_ID` | `"jetbrains-mono"` | src/utils/font/fontRegistry.ts | 3x | src/constants/fonts.ts, src/stores/exportStore.ts, src/utils/font/fontRegistry.ts |
+| `DEFAULT_ACTIVE_PALETTE_ID` | `"ansi-16"` | src/constants/defaultPalettes.ts | 2x | src/constants/defaultPalettes.ts, src/registry/generatorRegistry.ts |
+| `DEFAULT_PORT` | `9876` | src/mcp/client.ts | 1x | src/components/features/MCPConnectionDialog.tsx |
+| `DEFAULT_FONT` | `"ANSI Shadow"` | src/stores/asciiTypeStore.ts | 1x | src/constants/figletFonts.ts |
+| `DEFAULT_EXPORT_FONT_STACK` | `"SF Mono, Monaco, Cascadia Code, Consola` | src/utils/fontStack.ts | 1x | src/constants/fonts.ts |
+| `VERSION` | `"2.2.9"` | src/constants/version.ts | 1x | src/constants/version.ts |
+| `BUILD_DATE` | `"2026-10-20T16:46:12.504Z"` | src/constants/version.ts | 1x | src/constants/version.ts |
+| `NEWTON_EPSILON` | `1e-7` | src/types/easing.ts | 1x | src/types/easing.ts |
+
